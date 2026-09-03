@@ -2,31 +2,32 @@
 
 Independent 2D game consumer of the installed `engine` CMake Config package.
 
-This repository creates a real window, presents through the public engine WSI/Rendering contracts, and draws multiple simple colored 2D squares. Game-owned shaders and shader compilation stay in this repository. It does not introduce a speculative Renderer2D abstraction.
+This repository creates a real window, presents through the public engine WSI/Rendering contracts, uses the public `SwapchainLifecycle` coordinator for ordinary Presentation↔Rendering lifecycle orchestration, and draws multiple simple colored 2D squares. Game-owned shaders and shader compilation stay in this repository. It does not introduce a speculative Renderer2D abstraction.
 
 ## Engine requirement
 
 This consumer is pinned to:
 
-- engine Git tag: `v0.1.0`
-- engine CMake package: `0.1.0` exact
+- engine Git tag: `v0.3.1`
+- engine release checkpoint: `2f2fe2b628f2eb4198fb94dba67dded5f34e7ef0`
+- engine CMake package: `0.3.1` exact
 
 The CMake request is:
 
 ```cmake
 find_package(
-    engine 0.1.0 EXACT CONFIG REQUIRED
+    engine 0.3.1 EXACT CONFIG REQUIRED
     COMPONENTS vulkan wsi
 )
 ```
 
-Package version `0.1.0 EXACT` is not source provenance. The consumed install must be produced from the engine commit identified by `v0.1.0`. This project does not follow `main`, `master`, or any other moving engine branch.
+Package version `0.3.1 EXACT` is not source provenance. The consumed install must be produced from the engine commit identified by annotated tag `v0.3.1`, which peels to `2f2fe2b628f2eb4198fb94dba67dded5f34e7ef0`. This project does not follow `main`, `master`, or any other moving engine branch.
 
 Upgrades are explicit consumer changes to a later engine release identity. They are never automatic.
 
 ## Prerequisite
 
-Install the `v0.1.0` engine tree to a prefix you control. This repository does not vendor engine source, add the engine as a subdirectory or submodule, or fetch engine source through CMake.
+Install the `v0.3.1` engine tree to a prefix you control. This repository does not vendor engine source, add the engine as a subdirectory or submodule, or fetch engine source through CMake.
 
 Supply that prefix through normal CMake package search input such as `CMAKE_PREFIX_PATH` or `engine_DIR`. Do not commit a machine-specific absolute prefix.
 
